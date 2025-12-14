@@ -1,0 +1,5 @@
+Flight,Destination,Status,Cargo
+LY001,New York,On Time,Full
+LY314,London,Delayed,Partial
+LY007,Paris,On Time,Full
+LY255,Berlin,Delayed,Empty
