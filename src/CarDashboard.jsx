@@ -1,56 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import { CarsTable } from './CarsTable';
-import { ScatterPlotChart, MpgBarChart } from './CarCharts';
+import { BubbleChart, SalesBarChart } from './CarCharts';
 
-export function CarDashboard() {
-    const [data, setData] = useState(null);
+export function CarDashboard({ minYear }) {
+    const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
+    const engineFixMap = {
+        "Tesla Model Y": "Electric",
+        "BYD Atto 3": "Electric",
+        "MG 4": "Electric",
+        "Chery Tiggo 8": "Petrol"
+    };
+
     useEffect(() => {
-        fetch('/cars.json')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
+        fetch('/car_sales.json')
+    .then(res => res.json())
             .then(jsonData => {
-                setData(jsonData);
+                const fixedData = jsonData.map(car => {
+                    if (car.Engine === null) {
+                        return { ...car, Engine: engineFixMap[car.Model] || "Unknown" };
+                    }
+                    return car;
+                });
+                setData(fixedData);
                 setIsLoading(false);
             })
-            .catch(error => {
-                console.error("Error fetching data:", error);
-                setIsLoading(false);
-            });
+            .catch(err => console.error(err));
     }, []);
 
-    if (isLoading) {
-        return <div className="loading-message">...טוען נתונים</div>;
-    }
+    if (isLoading) return <div className="dashboard-card full-width">טוען נתונים...</div>;
 
-    if (!data || data.length === 0) {
-        return <div className="error-message">לא נמצאו נתונים להצגה.</div>;
-    }
-
-    const strongCars = [...data]
-        .sort((a, b) => b.Horsepower - a.Horsepower)
-        .slice(0, 5);
+    const filteredData = data.filter(car => car.Year >= minYear);
 
     return (
         <>
             <div className="dashboard-card chart-card">
-                <h3>1. קורלציה בין משתנים (Scatter Plot)</h3>
-                <ScatterPlotChart data={data} />
+                <h3>מפת השוק - שנים מול מכירות </h3>
+                <BubbleChart data={filteredData} />
             </div>
 
             <div className="dashboard-card chart-card">
-                <h3>2. מגמות צריכת דלק (Bar Chart)</h3>
-                <MpgBarChart data={data} />
+                <h3>סיכום מכירות לפי סוג מנוע </h3>
+                <SalesBarChart data={filteredData} />
             </div>
 
             <div className="dashboard-card full-width">
-                <h3>3. טבלת נתונים (Data Table)</h3>
-                <CarsTable cars={strongCars} />
+                <h3>טבלת נתונים מסוננת</h3>
+                <CarsTable cars={filteredData} />
             </div>
         </>
     );

@@ -1,0 +1,16 @@
+[
+  { "Year": 2020, "Model": "Toyota Corolla", "Sales": 12000, "Price": 140000, "Engine": "Petrol" },
+  { "Year": 2020, "Model": "Mazda 3", "Sales": 8000, "Price": 145000, "Engine": "Petrol" },
+  { "Year": 2021, "Model": "Hyundai Ioniq", "Sales": 9000, "Price": 160000, "Engine": "Hybrid" },
+  { "Year": 2021, "Model": "Tesla Model 3", "Sales": 6000, "Price": 200000, "Engine": "Electric" },
+  { "Year": 2022, "Model": "Kia Picanto", "Sales": 11000, "Price": 90000, "Engine": "Petrol" },
+  { "Year": 2022, "Model": "Geely Geometry C", "Sales": 6500, "Price": 145000, "Engine": "Electric" },
+  { "Year": 2023, "Model": "BYD Atto 3", "Sales": 14000, "Price": 165000, "Engine": "Electric" },
+  { "Year": 2023, "Model": "Toyota Yaris", "Sales": 5000, "Price": 115000, "Engine": "Hybrid" },
+  { "Year": 2024, "Model": "Tesla Model Y", "Sales": 16000, "Price": 220000, "Engine": null },
+  { "Year": 2024, "Model": "BYD Atto 3", "Sales": 18000, "Price": 165000, "Engine": null },
+  { "Year": 2024, "Model": "MG 4", "Sales": 9000, "Price": 150000, "Engine": null },
+  { "Year": 2024, "Model": "Chery Tiggo 8", "Sales": 8000, "Price": 180000, "Engine": null },
+  { "Year": 2024, "Model": "Mazda 2", "Sales": 4000, "Price": 110000, "Engine": "Petrol" },
+  { "Year": 2024, "Model": "Skoda Octavia", "Sales": 5000, "Price": 155000, "Engine": "Petrol" }
+]
